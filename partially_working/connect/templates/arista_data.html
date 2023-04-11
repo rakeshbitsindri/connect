@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Arista Interface Status</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 10px;
+          text-align: left;
+        }
+        .dot-green {
+          height: 15px;
+          width: 15px;
+          background-color: #4CAF50;
+          border-radius: 50%;
+          display: inline-block;
+        }
+        .dot-red {
+          height: 15px;
+          width: 15px;
+          background-color: #F44336;
+          border-radius: 50%;
+          display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Arista Interface Status</h1>
+    <table>
+        {% for interface_group in table_data %}
+        <tr>
+            {% for interface in interface_group %}
+            <td>
+                <h3>{{ interface.name }}</h3>
+                <p>Status: {{ interface.status|safe }}</p>
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

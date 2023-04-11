@@ -1,0 +1,13 @@
+html {
+  background-image: url('/static/images/arista_dut.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+.container {
+  background-image: url('/static/images/arista_dut.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}

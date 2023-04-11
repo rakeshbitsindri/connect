@@ -1,0 +1,50 @@
+<!-- connect.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Arista Interface Status</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		th, td {
+			padding: 5px;
+			text-align: left;
+		}
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<h1>Arista Interface Status</h1>
+	<table style="width:100%">
+		<tr>
+			<th>Interface Name</th>
+			<th>Status</th>
+			<th>Interface Name</th>
+			<th>Status</th>
+		</tr>
+		{% for row in table_data %}
+		<tr>
+			{% if row.0 %}
+			<td>{{ row.0.name }}</td>
+			<td>{{ row.0.status }}</td>
+			{% else %}
+			<td></td>
+			<td></td>
+			{% endif %}
+			{% if row.1 %}
+			<td>{{ row.1.name }}</td>
+			<td>{{ row.1.status }}</td>
+			{% else %}
+			<td></td>
+			<td></td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>{% block title %}{% endblock %}</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+	{% endblock %}
+	
+	{% block csrf_token %}
+	{% csrf_token %}
+	{% endblock %}
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+		{% block navbar %}
+		<a class="navbar-brand" href="{% url 'home' %}">Connect App</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item {% if request.path == '/' %}active{% endif %}">
+					<a class="nav-link" href="{% url 'home' %}">Home</a>
+				</li>
+			</ul>
+		{% endif %}
+		</div>
+		{% endblock %}
+	</nav>
+
+	<main role="main" class="container">
+		{% block content %}
+		{% endblock %}
+	</main>
+
+	<!-- jQuery -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+	{% block javascript %}
+	{% endblock %}
+</body>
+</html>

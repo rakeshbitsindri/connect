@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arista Interface Data</title>
+    <style>
+        .dot-green {
+            height: 10px;
+            width: 10px;
+            background-color: green;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .dot-red {
+            height: 10px;
+            width: 10px;
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        table {
+            border-collapse: collapse;
+            width: 25%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even){background-color: #f2f2f2}
+        th {
+            background-color: #4CAF50;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Arista Interface Data</h1>
+    <h2>Physical Interfaces</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Interface Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in physical_table_data %}
+                <tr>
+                    {% for intf_data in row %}
+                        <td>{{ intf_data.name }}</td>
+                        <td>{{ intf_data.status|safe }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>VLAN Interfaces</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Interface Name</th>
+                <th>Status</th>
+                <th>VLANs</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in vlan_data %}
+                <tr>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.status|safe }}</td>
+                    <td>{% for vlan in row.vlans %}{{ vlan }}, {% endfor %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Port Channel Interfaces</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Interface Name</th>
+                <th>Status</th>
+                <th>Speed</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in port_channel_data %}
+                <tr>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.status|safe }}</td>
+                    <td>{{ row.speed }}</td>
+                    <td>{{ row.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        setInterval(function() {
+            location.reload();
+        }, 5000); // refresh every 5 seconds (5000 milliseconds)
+    </script>
+</body>
+</html>
